@@ -18,4 +18,4 @@ Reinforcement Learning principles used:
 
 The mathematical model is as follows:
 
-The tumor is represented as a set of `spherical cells` of radius  in a 3D space
+The tumor is represented as a set of `spherical cells` of radius $r_i$ in a 3D space
