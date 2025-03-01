@@ -24,6 +24,8 @@ The tumor is represented as a set of `spherical cells` of radius $r_i$ in a 3D s
 The genetic traits: $density (d)$ influences how closely cells are packed, $growth rate (g)$ determines how fast new cells are added, $assymetry (a)$ controls random deviations in growth, $heterogeneity (h)$ determines variations in cell sizes.
 RL components: $state S_t$ represents the tumor at time $t$ as $S_t = T(t)$, $action A_t$ from where the agent chooses an action: $A \in
 
+NEED TO FINISH
+
 ![til](ezgif.com-video-to-gif-converter.gif)
 
 Bibliographical references:
