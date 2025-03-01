@@ -13,7 +13,8 @@ The organ will be generated just as a sphere:
 Reinforcement Learning principles used: 
 - the `RL agent` is the tumor
 - the `RL environment` is defined in `TumorEnv`
-- the available actions are: `normal growth` (balanced cell expansion), `rapid expansion` (aggressive tumor growth), `reduced growth` (cells multiply at a slower rate). `The reward` is proportional to the number of cells which motivates the tumor to grow.
+- the available actions are: `normal growth` (balanced cell expansion), `rapid expansion` (aggressive tumor growth), `reduced growth` (cells multiply at a slower rate)
+- `the reward` is proportional to the number of cells which motivates the tumor to grow.
 The mathematical model is as follows:
 
 The tumor is represented as a set of `spherical cells` of radius  in a 3D space
