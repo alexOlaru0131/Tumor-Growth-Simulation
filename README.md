@@ -19,4 +19,7 @@ Reinforcement Learning principles used:
 The mathematical model is as follows:
 
 1. Definitions and notation
+
 The tumor is represented as a set of `spherical cells` of radius $r_i$ in a 3D space with the position $C_i = (x_i, y_i, z_i)$ and the whole structure at time step $t$ is a set $T(t) = \{ (C_1, r_1), (C_2, r_2),...,(C_n, r_n) \} $, where $n$ is the number of cells at time $t$.
+The genetic traits: $density (d)$ influences how closely cells are packed, $growth rate (g)$ determines how fast new cells are added, $assymetry (a)$ controls random deviations in growth, $heterogeneity (h)$ determines variations in cell sizes.
+RL components: $state S_t$ represents the tumor at time $t$ as $S_t = T(t)$, $action A_t$ from where the agent chooses an action: $A \in
