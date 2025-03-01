@@ -19,7 +19,5 @@ Reinforcement Learning principles used:
 The mathematical model is as follows:
 
 The tumor is represented as a set of `spherical cells` of radius $r_i$ in a 3D space with the position $C_i = (x_i, y_i, z_i)$ and the whole structure at time step $t$ is a set 
-<script type="math/tex">
-T(t) = \{ (C_1, r_1), (C_2, r_2),...,(C_n, r_n) \}
-</script>
+![Tumor Growth Formula](https://latex.codecogs.com/png.latex?T(t)%20=%20\{(C_1,%20r_1),%20(C_2,%20r_2),...,(C_n,%20r_n)\})
 , where $n$ is the number of cells at time $t$.
