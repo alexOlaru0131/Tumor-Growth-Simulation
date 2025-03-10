@@ -37,9 +37,9 @@ The agent can choose:
 - Rapid growth (A = 1)
 - Slow growth (A = 2)
 
-The reward encourages growth but penalizes excessive expansion: $R_t = n - \lamda max(0, n-200)$, with n current tumor size and $\lamba$ penalty factor for exceeding size limit.
+The reward encourages growth but penalizes excessive expansion: $R_t = n - \lambda max(0, n-200)$, with n current tumor size and $\lambda$ penalty factor for exceeding size limit.
 
-NEED TO FINISH
+You can see a simulation below:
 
 ![til](ezgif.com-video-to-gif-converter.gif)
 
