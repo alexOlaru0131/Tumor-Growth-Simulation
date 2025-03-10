@@ -24,6 +24,21 @@ The tumor is represented as a set of `spherical cells` of radius $r_i$ in a 3D s
 The genetic traits: $density (d)$ influences how closely cells are packed, $growth rate (g)$ determines how fast new cells are added, $assymetry (a)$ controls random deviations in growth, $heterogeneity (h)$ determines variations in cell sizes.
 RL components: $state S_t$ represents the tumor at time $t$ as $S_t = T(t)$, $action A_t$ from where the agent chooses an action: $A \in \{normal growth, rapid growth, slow growth \}$, reward $R_i$ based on the tumor size and transition function $S_{t+1} = f(S_t, A_t)$.
 
+2. Tumor Growth Model
+
+Each cell is placed near an existing cell in a random direction: $C_{new} = C_{parent} + d v$, with d, the distance factor based on the density and v a random vector unit. I chose the cell radius to follow a heterogenous distribution: $r_{new} = max(0.8, min(1.2, N(1.0, h)))$, with $N$ the random normal distribution and $h$ the heterogeneity factor controlling size variability.
+
+3. Reinforcement Learning Model
+
+The RL agent controls tumor growth by selecting actions at each step.
+The state $S_t$ consists of: $S_t = C_1, C_2,..., C_n, r_1, r_2,..., r_n$ which encodes the positions and siez of tumor cells and number of blood vessels.
+The agent can choose:
+- Nomal growth (A = 0)
+- Rapid growth (A = 1)
+- Slow growth (A = 2)
+
+The reward encourages growth but penalizes excessive expansion: $R_t = n - \lamda max(0, n-200)$, with n current tumor size and $\lamba$ penalty factor for exceeding size limit.
+
 NEED TO FINISH
 
 ![til](ezgif.com-video-to-gif-converter.gif)
