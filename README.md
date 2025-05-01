@@ -54,8 +54,9 @@ Where \(n\) is the number of cells and \(\lambda\) is the penalty factor.
 
 ### 1. Notation and Definitions
 - Tumor at time \(t\):
-  \[ T(t) = \left\{ (C_1, r_1), (C_2, r_2), \ldots, (C_n, r_n) \right\} \]
-
+  \[
+  T(t) = \left\{ (C_1, r_1), (C_2, r_2), \ldots, (C_n, r_n) \right\}
+  \]
   where \(C_i = (x_i, y_i, z_i)\) is the 3D coordinate of the \(i\)-th cell and \(r_i\) its radius.
 
 - Genetic traits:
@@ -67,10 +68,14 @@ Where \(n\) is the number of cells and \(\lambda\) is the penalty factor.
 ### 2. Growth Algorithm
 
 Let \(v\) be a randomly sampled unit vector and \(d\) the distance factor derived from density. A new cell is generated at:
-\[ C_{\text{new}} = C_{\text{parent}} + d \cdot v \]
+\[
+C_{\text{new}} = C_{\text{parent}} + d \cdot v
+\]
 
 The radius of the new cell is sampled from a truncated normal distribution:
-\[ r_{\text{new}} = \max(0.8, \min(1.2, \mathcal{N}(1.0, h))) \]
+\[
+r_{\text{new}} = \max(0.8, \min(1.2, \mathcal{N}(1.0, h)))
+\]
 
 Where \(\mathcal{N}(1.0, h)\) is a normal distribution with mean 1.0 and standard deviation \(h\).
 
@@ -81,17 +86,23 @@ The state at time \(t\) includes:
 - Total number of blood vessels \(b_t\)
 
 Thus:
-\[ S_t = \{ C_1, \ldots, C_n; r_1, \ldots, r_n; b_t \} \]
+\[
+S_t = \{ C_1, \ldots, C_n;\ r_1, \ldots, r_n;\ b_t \}
+\]
 
 ### 4. Action Set
 
 The agent can choose from the discrete set:
-\[ A = \{ 0: \text{Normal}, 1: \text{Rapid}, 2: \text{Slow} \} \]
+\[
+A = \{ 0:\ \text{Normal},\ 1:\ \text{Rapid},\ 2:\ \text{Slow} \}
+\]
 
 ### 5. Transition Function
 
 The environment updates the tumor state according to:
-\[ S_{t+1} = f(S_t, A_t) \]
+\[
+S_{t+1} = f(S_t, A_t)
+\]
 
 Where \(f\) is a stochastic function influenced by genetic code, spatial availability, and growth constraints.
 
@@ -117,3 +128,4 @@ Below is a rendered GIF of tumor development over time:
 ---
 
 This project is part of a student research initiative aimed at exploring computational oncology through artificial intelligence and mathematical modeling. Feedback and collaboration are welcome.
+
