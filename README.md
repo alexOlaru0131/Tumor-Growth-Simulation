@@ -12,7 +12,7 @@ Each tumor instance is generated with a unique, randomized genetic code, which i
 - Asymmetry – randomness in the direction of cell expansion
 - Heterogeneity – variation in cell size
 - Tissue type – one of the following:
-- - 
+  - 
 
 ![alt text](tumor.png)
 
