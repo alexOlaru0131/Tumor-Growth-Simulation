@@ -46,7 +46,7 @@ The RL framework follows a standard agent-environment interaction model:
   - Penalizes excessive growth beyond a threshold of 200 cells
   
   Reward function:
-  \( R_t = n - \lambda \cdot \max(0, n - 200) \)
+  \[ R_t = n - \lambda \cdot \max(0, n - 200) \]
 
 Where \(n\) is the number of cells and \(\lambda\) is the penalty factor.
 
@@ -54,38 +54,46 @@ Where \(n\) is the number of cells and \(\lambda\) is the penalty factor.
 
 ### 1. Notation and Definitions
 - Tumor at time \(t\):
-  \( T(t) = \{ (C_1, r_1), (C_2, r_2), ..., (C_n, r_n) \} \)
-  
-  Where \(C_i = (x_i, y_i, z_i)\) is the 3D coordinate of the \(i\)-th cell, and \(r_i\) its radius.
+  \[ T(t) = \left\{ (C_1, r_1), (C_2, r_2), \ldots, (C_n, r_n) \right\} \]
+
+  where \(C_i = (x_i, y_i, z_i)\) is the 3D coordinate of the \(i\)-th cell and \(r_i\) its radius.
 
 - Genetic traits:
-  - \(d\): Density (affects distance between cells)
-  - \(g\): Growth rate
-  - \(a\): Asymmetry factor
-  - \(h\): Heterogeneity factor (controls size variability)
+  - \(d\): Density — affects how closely cells are packed
+  - \(g\): Growth rate — determines how quickly cells reproduce
+  - \(a\): Asymmetry — introduces directional randomness in growth
+  - \(h\): Heterogeneity — controls variability in cell size
 
 ### 2. Growth Algorithm
 
-New cells are generated near a parent cell:
-\( C_{new} = C_{parent} + d \cdot v \)
+Let \(v\) be a randomly sampled unit vector and \(d\) the distance factor derived from density. A new cell is generated at:
+\[ C_{\text{new}} = C_{\text{parent}} + d \cdot v \]
 
-Where \(v\) is a random unit vector and \(d\) is derived from the density.
+The radius of the new cell is sampled from a truncated normal distribution:
+\[ r_{\text{new}} = \max(0.8, \min(1.2, \mathcal{N}(1.0, h))) \]
 
-Cell radius is sampled as:
-\( r_{new} = \max(0.8, \min(1.2, N(1.0, h))) \)
+Where \(\mathcal{N}(1.0, h)\) is a normal distribution with mean 1.0 and standard deviation \(h\).
 
-Where \(N(1.0, h)\) is a normal distribution centered at 1.0 with standard deviation \(h\).
+### 3. State Representation \(S_t\)
+The state at time \(t\) includes:
+- 3D coordinates of all cells \(C_1, C_2, \ldots, C_n\)
+- Radii of all cells \(r_1, r_2, \ldots, r_n\)
+- Total number of blood vessels \(b_t\)
 
-### 3. RL State Definition
-The state \(S_t\) includes:
-- Coordinates and radii of all tumor cells: \(\{C_1, C_2, ..., C_n, r_1, r_2, ..., r_n\}\)
-- Number of blood vessels
+Thus:
+\[ S_t = \{ C_1, \ldots, C_n; r_1, \ldots, r_n; b_t \} \]
 
-### Action Set
-- \(A = \{0: \text{Normal}, 1: \text{Rapid}, 2: \text{Slow}\}\)
+### 4. Action Set
 
-### Transition Function
-- \(S_{t+1} = f(S_t, A_t)\) is determined by spatial constraints and genetic traits.
+The agent can choose from the discrete set:
+\[ A = \{ 0: \text{Normal}, 1: \text{Rapid}, 2: \text{Slow} \} \]
+
+### 5. Transition Function
+
+The environment updates the tumor state according to:
+\[ S_{t+1} = f(S_t, A_t) \]
+
+Where \(f\) is a stochastic function influenced by genetic code, spatial availability, and growth constraints.
 
 ## Simulation Example
 
