@@ -45,42 +45,47 @@ The RL framework follows a standard agent-environment interaction model:
   - Encourages growth proportionally to the number of cells
   - Penalizes excessive growth beyond a threshold of 200 cells
   
-  $$ R_t = n - \lambda \cdot \max(0, n - 200) $$
+  Reward function:
+  \( R_t = n - \lambda \cdot \max(0, n - 200) \)
 
-Where $n$ is the number of cells and $\lambda$ is the penalty factor.
+Where \(n\) is the number of cells and \(\lambda\) is the penalty factor.
 
 ## Mathematical Modeling
 
 ### 1. Notation and Definitions
-- Tumor at time $t$:
-  $$ T(t) = \{ (C_1, r_1), (C_2, r_2), ..., (C_n, r_n) \} $$
-  Where $C_i = (x_i, y_i, z_i)$ is the 3D coordinate of the $i$-th cell, and $r_i$ its radius.
+- Tumor at time \(t\):
+  \( T(t) = \{ (C_1, r_1), (C_2, r_2), ..., (C_n, r_n) \} \)
+  
+  Where \(C_i = (x_i, y_i, z_i)\) is the 3D coordinate of the \(i\)-th cell, and \(r_i\) its radius.
 
 - Genetic traits:
-  - $d$: Density (affects distance between cells)
-  - $g$: Growth rate
-  - $a$: Asymmetry factor
-  - $h$: Heterogeneity factor (controls size variability)
+  - \(d\): Density (affects distance between cells)
+  - \(g\): Growth rate
+  - \(a\): Asymmetry factor
+  - \(h\): Heterogeneity factor (controls size variability)
 
 ### 2. Growth Algorithm
+
 New cells are generated near a parent cell:
-  $$ C_{new} = C_{parent} + d \cdot v $$
-Where $v$ is a random unit vector and $d$ is derived from the density.
+\( C_{new} = C_{parent} + d \cdot v \)
+
+Where \(v\) is a random unit vector and \(d\) is derived from the density.
 
 Cell radius is sampled as:
-  $$ r_{new} = \max(0.8, \min(1.2, N(1.0, h))) $$
-Where $N(1.0, h)$ is a normal distribution centered at 1.0 with standard deviation $h$.
+\( r_{new} = \max(0.8, \min(1.2, N(1.0, h))) \)
+
+Where \(N(1.0, h)\) is a normal distribution centered at 1.0 with standard deviation \(h\).
 
 ### 3. RL State Definition
-The state $S_t$ includes:
-- Coordinates and radii of all tumor cells: $\{C_1, C_2, ..., C_n, r_1, r_2, ..., r_n\}$
+The state \(S_t\) includes:
+- Coordinates and radii of all tumor cells: \(\{C_1, C_2, ..., C_n, r_1, r_2, ..., r_n\}\)
 - Number of blood vessels
 
 ### Action Set
-- $A = \{0: \text{Normal}, 1: \text{Rapid}, 2: \text{Slow}\}$
+- \(A = \{0: \text{Normal}, 1: \text{Rapid}, 2: \text{Slow}\}\)
 
 ### Transition Function
-- $S_{t+1} = f(S_t, A_t)$ is determined by spatial constraints and genetic traits.
+- \(S_{t+1} = f(S_t, A_t)\) is determined by spatial constraints and genetic traits.
 
 ## Simulation Example
 
@@ -104,4 +109,3 @@ Below is a rendered GIF of tumor development over time:
 ---
 
 This project is part of a student research initiative aimed at exploring computational oncology through artificial intelligence and mathematical modeling. Feedback and collaboration are welcome.
-
